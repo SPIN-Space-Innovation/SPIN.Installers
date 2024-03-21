@@ -1,4 +1,4 @@
-// MIT License
+﻿// MIT License
 //
 // Copyright (c) 2024 SPIN - Space Innovation
 //
@@ -26,3 +26,5 @@ global using Microsoft.Extensions.DependencyInjection;
 global using MediatR;
 
 global using SPIN.Devices.Abstractions;
+global using SPIN.Installers.Abstractions;
+global using SPIN.Installers.Abstractions.Attributes;
