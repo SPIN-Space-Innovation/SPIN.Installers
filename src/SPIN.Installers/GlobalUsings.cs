@@ -24,3 +24,5 @@ global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 
 global using MediatR;
+
+global using SPIN.Devices.Abstractions;
