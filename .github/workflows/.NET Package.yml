@@ -1,0 +1,25 @@
+name: .NET Package
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Add GitHub Nuget registry
+      run: dotnet nuget add source https://nuget.pkg.github.com/SPIN-Space-Innovation/index.json -n SPIN-github -u SPIN-Space-Innovation --store-password-in-clear-text -p "${{ secrets.PACKAGE }}"
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Package
+      run: dotnet pack --configuration Release
+    - name: Publish
+      run: dotnet nuget push "src/*/bin/Release/*.nupkg" --source "SPIN-github" -k "${{ secrets.PACKAGE }}"
